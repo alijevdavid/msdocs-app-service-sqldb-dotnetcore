@@ -5,11 +5,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add database context and cache
 builder.Services.AddDbContext<MyDatabaseContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=msdocs-core-sql-zijd8b-server.database.windows.net,1433;Initial Catalog=msdocs-core-sql-zijd8b-database;User ID=msdocs-core-sql-zijd8b-server-admin;Password=N6L6Q2VAFLD158LV$")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")));
 
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-options.Configuration = builder.Configuration["msdocs-core-sql-zijd8b-cache.redis.cache.windows.net:6380,password=NVvt1Ya5EZsEnan3gsR7Ns0wfpC0Bx21DAzCaJtQn3w=,ssl=True,defaultDatabase=0"];
+options.Configuration = builder.Configuration["AZURE_REDIS_CONNECTIONSTRING"];
 options.InstanceName = "SampleInstance";
 });
 
